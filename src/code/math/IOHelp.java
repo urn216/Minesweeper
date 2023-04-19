@@ -15,12 +15,13 @@ import java.util.ArrayList;
 * class helping do file stuff
 */
 public class IOHelp {
-  public static void saveToFile(String filename, String content) {
+  
+  public static final void saveToFile(String filename, String... content) {
     try {
       File f = new File(filename);
       f.createNewFile();
       PrintStream out = new PrintStream(f);
-      out.print(content);
+      for (String s : content) out.print(s);
       out.close();
     } catch(IOException e){System.err.println("Saving failed " + e);}
   }
@@ -70,6 +71,8 @@ public class IOHelp {
     }
     return f.delete();
   }
+  
+  public static final boolean exists(String filename) {return new File(filename).exists();}
 
   public static List<String> readAllLines(String filename, boolean inJar) {
     try {

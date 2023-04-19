@@ -1,9 +1,9 @@
-javac src/code/core/*.java src/code/math/*.java src/code/ui/*.java src/code/ui/elements/*.java src/code/board/*.java src/code/ai/*.java -d bin
+javac src/code/core/*.java src/code/math/*.java src/code/board/*.java src/code/ai/*.java -cp data/UI_1.0.3.jar -d bin
 
 cd bin
 
-jar cfm ../versions/Minesweeper.jar data/compiler/manifest.txt code data
+jar cfm ../versions/Minesweeper.jar ../data/compiler/manifest.txt code ../data
 
-start "" javaw -jar ../versions/Minesweeper.jar
+java -jar ../versions/Minesweeper.jar
 
-//pause
+pause

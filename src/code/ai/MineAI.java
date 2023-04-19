@@ -16,10 +16,10 @@ public class MineAI {
 
   private double minProb = 1;
 
-  public MineAI(Scene scene, int mapSX, int mapSY) {
+  public MineAI(Scene scene) {
     this.scene = scene;
-    this.mapSX = mapSX;
-    this.mapSY = mapSY;
+    this.mapSX = scene.getMapSX();
+    this.mapSY = scene.getMapSY();
   }
 
   public boolean Suggests() {return suggest;}

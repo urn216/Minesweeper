@@ -16,11 +16,15 @@ import java.awt.Graphics2D;
 */
 public class Scene
 {
+  public static final Scene MENU_SCENE = new Scene(0);
+
+  private final Camera cam;
+
   private int mapSX;
   private int mapSY;
   private Tile[][] map;
 
-  private Decal bg;
+  private Decal bg = new Decal(1920, 1080, "BG/Menu.png", false);
 
   private int numMines;
   private int numClicked;
@@ -30,22 +34,22 @@ public class Scene
   /**
   * Constructor for Scenes
   */
-  public Scene(boolean menu) {
-    bg = new Decal(1920, 1080, "BG/Menu.png", false);
-    if (menu) menuSetup();
-    else gameSetup();
+  public Scene() {
+    cam = new Camera(new Vector2(), new Vector2(), 1);
+    gameSetup();
   }
 
-  public void menuSetup() {
+  private Scene(int a) {
+    cam = new Camera(new Vector2(), new Vector2(), 1);
     map = new Tile[0][0];
     mapSX = mapSY = 0;
     numClicked = 0;
   }
 
-  public void gameSetup() {
-    map = GenerateRandom.generate();
-    mapSX = map.length;
-    mapSY = map[0].length;
+  private void gameSetup() {
+    mapSX = Core.GAME_SETTINGS.getIntSetting("mapW");
+    mapSY = Core.GAME_SETTINGS.getIntSetting("mapH");
+    map = GenerateRandom.generate(System.nanoTime(), mapSX, mapSY, (int)(Core.GAME_SETTINGS.getDoubleSetting("mines")*mapSX*mapSY));
     first = true;
     countMines();
     numClicked = 0;
@@ -71,6 +75,8 @@ public class Scene
     int[] stats = {numMines, numClicked};
     return stats;
   }
+
+  public Camera getCam() {return cam;}
 
   public int getMapSX() {return mapSX;}
 
@@ -187,14 +193,17 @@ public class Scene
     }
   }
 
-  public void draw(Graphics2D g, Camera cam, boolean revealAll) {
+  public void draw(Graphics2D g, boolean revealAll) {
     bg.draw(g, cam);
 
     for (int i = 0; i < mapSX; i++) {
+      int x = i-mapSX/2;
       for (int j = 0; j < mapSY; j++) {
+        int y = j-mapSY/2;
         Tile t = map[i][j];
         if (revealAll && t.isMine() && !t.isClicked()) t.reveal();
-        if (t.onScreen(cam)) t.draw(g, cam);
+        if (cam.canSee(x*Tile.TILE_SIZE, y*Tile.TILE_SIZE, (x+1)*Tile.TILE_SIZE, (y+1)*Tile.TILE_SIZE)) 
+            t.draw(g, cam);
       }
     }
   }

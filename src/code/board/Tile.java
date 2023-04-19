@@ -20,13 +20,12 @@ import java.awt.FontMetrics;
 */
 public class Tile
 {
-  public static final double TILE_SIZE = 64;
+  public static final int TILE_SIZE = 64;
   private static final boolean DRAW_CHANCE = true;
 
   private int aiNum = 0;
   private int aiDen = 0;
 
-  private Vector2 position;
   private Vector2 origin;
 
   private boolean visible = true;
@@ -48,33 +47,7 @@ public class Tile
   public Tile(double x, double y, boolean isMine)
   {
     origin = new Vector2(x*TILE_SIZE, y*TILE_SIZE);
-    position = new Vector2(x*TILE_SIZE+TILE_SIZE/2, y*TILE_SIZE+TILE_SIZE/2);
     this.isMine = isMine;
-  }
-
-  public boolean onScreen(Camera cam) {
-    double z = cam.getZoom();
-    double conX = cam.conX();
-    double conY = cam.conY();
-    Vector2 screenSize = cam.getScreenSize();
-
-    if((position.x-TILE_SIZE/2)*z-conX < screenSize.x
-    && (position.y-TILE_SIZE/2)*z-conY < screenSize.y
-    && (position.x+TILE_SIZE/2)*z-conX >= 0
-    && (position.y+TILE_SIZE/2)*z-conY >= 0) {visible = true; return visible;}
-    visible = false;
-    return visible;
-
-
-    // Vector2 camPos = cam.getPos().add(cam.getOffset());
-    // Vector2 camSize = cam.getSize();
-    // if (!((camPos.x-camSize.x < position.x+TILE_SIZE/2 && camPos.y-camSize.y < position.y+TILE_SIZE/2) && (camPos.x+camSize.x > position.x-TILE_SIZE/2 && camPos.y+camSize.y > position.y-TILE_SIZE/2))) {
-    //   visible = false;
-    //   return visible;
-    // }
-    // visible = true;
-    // // if (!isMine) return false;
-    // return visible;
   }
 
   public void setMine() {isMine = true;}

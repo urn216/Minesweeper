@@ -1,0 +1,4 @@
+mapH 12
+mapW 12
+mines 0.1
+useAI false

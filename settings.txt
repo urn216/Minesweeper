@@ -1,2 +1,0 @@
-fullScreen true
-scrollSensitivity 5

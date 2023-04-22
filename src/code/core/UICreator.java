@@ -126,10 +126,10 @@ class UICreator {
     );
 
     HUD.addState(UIState.DEFAULT, outPause);
-    HUD.addState(UIState.SETUP_HOST, greyed, UIState.DEFAULT);
-    HUD.addState(UIState.SETUP_HOST, win);
-    HUD.addState(UIState.SETUP_CLIENT, greyed, UIState.DEFAULT);
-    HUD.addState(UIState.SETUP_CLIENT, lose);
+    HUD.addState(UIState.WIN, greyed, UIState.DEFAULT);
+    HUD.addState(UIState.WIN, win);
+    HUD.addState(UIState.LOSE, greyed, UIState.DEFAULT);
+    HUD.addState(UIState.LOSE, lose);
     
     HUD.clear();
     

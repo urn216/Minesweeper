@@ -96,7 +96,7 @@ public abstract class Core {
   */
   public static void lose() {
     state = State.DEATH;
-    UIController.setState(UIState.SETUP_CLIENT);
+    UIController.forceState(UIState.LOSE);
   }
 
   /**
@@ -104,20 +104,22 @@ public abstract class Core {
   */
   public static void win() {
     state = State.VICTORY;
-    UIController.setState(UIState.SETUP_HOST);
+    UIController.forceState(UIState.WIN);
   }
   
   public static void restart() {
     currentScene.reset(); 
     state = State.RUN; 
-    UIController.setState(UIState.DEFAULT);
+    UIController.forceState(UIState.DEFAULT);
   }
 
   public static void newGame() {
     currentScene = new Scene();
     state = State.RUN;
     UIController.setCurrentPane("HUD");
-    ai = GAME_SETTINGS.getBoolSetting("useAI") ? new MineAI(currentScene) : null;
+    ai = GAME_SETTINGS.getBoolSetting("useAI")
+       ? new MineAI(currentScene, false)
+       : null;
   }
 
   public static void toMenu() {
@@ -145,7 +147,7 @@ public abstract class Core {
         case MAINMENU:
         break;
         case RUN:
-        if (ai != null && !ai.Suggests()) {
+        if (ai != null && !currentScene.hasPressedTile()) {
           if (!ai.step()) lose();
           if (currentScene.checkWin()) win();
         }

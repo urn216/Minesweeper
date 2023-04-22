@@ -30,6 +30,7 @@ public class Scene
   private int numClicked;
 
   private boolean first;
+  private boolean pressed;
 
   /**
   * Constructor for Scenes
@@ -98,6 +99,10 @@ public class Scene
     return intMap;
   }
 
+  public boolean hasPressedTile() {
+    return this.pressed;
+  }
+
   public void setChance(Vector2 p, int num, int den) {
     getTile(p).setChance(num, den);
   }
@@ -113,6 +118,7 @@ public class Scene
   public void press(Vector2 p) {
     if (!validate(p)) return;
     Tile t = getTile(p);
+    this.pressed = true;
     t.setIn();
     if (t.isClicked()) t.pressNeighbours();
   }
@@ -136,6 +142,7 @@ public class Scene
       }
     }
 
+    this.pressed = false;
     for (int i = 0; i < mapSX; i++) {
       for (int j = 0; j < mapSY; j++) {
         Tile t = map[i][j];
@@ -162,6 +169,7 @@ public class Scene
       }
     }
 
+    this.pressed = false;
     for (int i = 0; i < mapSX; i++) {
       for (int j = 0; j < mapSY; j++) {
         map[i][j].unsetIn();

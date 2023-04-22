@@ -11,18 +11,17 @@ public class MineAI {
   private final int mapSX;
   private final int mapSY;
 
+  private final boolean suggest;
+  
   private boolean redo = false;
-  private boolean suggest = false;
-
   private double minProb = 1;
 
-  public MineAI(Scene scene) {
+  public MineAI(Scene scene, boolean suggest) {
     this.scene = scene;
     this.mapSX = scene.getMapSX();
     this.mapSY = scene.getMapSY();
+    this.suggest = suggest;
   }
-
-  public boolean Suggests() {return suggest;}
 
   public boolean step() {
     redo = false;
@@ -35,7 +34,7 @@ public class MineAI {
     return clickMin(probs);
   }
 
-  public double[][] getProbabilities(int[][] map) {
+  private double[][] getProbabilities(int[][] map) {
     double[][] probs = new double[mapSX][mapSY];
 
     minProb = 1;
@@ -62,7 +61,7 @@ public class MineAI {
   *
   * @return the probability that this tile is a mine
   */
-  public double findProbability(int[][] map, int c, int r) {
+  private double findProbability(int[][] map, int c, int r) {
     double probability = -1;
     //look at each uncovered tile around this one
     for (int rs=Math.max(r-1,0); rs<Math.min(r+2, mapSY); rs++){
@@ -136,7 +135,7 @@ public class MineAI {
   *
   * @return the probability of this tile's surroundings
   */
-  public Vector2 independent(int[][] map, int ucx, int ucy, int c, int r, List<Vector2> covered) {
+  private Vector2 independent(int[][] map, int ucx, int ucy, int c, int r, List<Vector2> covered) {
     int numer = map[ucx][ucy];
     int denom = 0;
     for (int rp=Math.max(ucy-1,0); rp<Math.min(ucy+2, mapSY); rp++){
@@ -157,14 +156,14 @@ public class MineAI {
     return new Vector2(numer, denom);
   }
 
-  public boolean contains(List<Vector2> covered, Vector2 t) {
+  private boolean contains(List<Vector2> covered, Vector2 t) {
     for (Vector2 v : covered) {
       if (v.equals(t)) return true;
     }
     return false;
   }
 
-  public boolean clickMin(double[][] probs) {
+  private boolean clickMin(double[][] probs) {
     for (int i = 0; i < mapSY; i++) {
       for (int j = 0; j < mapSX; j++) {
         if (probs[j][i] == minProb)  {

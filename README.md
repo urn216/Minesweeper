@@ -6,4 +6,4 @@ I recreated Minesweeper with the express purpose of designing an AI to play it a
 The AI runs off of probabilities, always selecting tiles it knows are free of mines.
 If the AI is ever unsure of what move to make next, it will suggest its best guess, and then leave it up to the player to ultimately finalise the move.
 
-In-game settings to come at some point in the future. For now, 30x30 board with 150 mines, and the AI is always on.
+AI settings still to-do. As well as re-adding 'remaining mines' counter

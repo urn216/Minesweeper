@@ -23,7 +23,7 @@ public final class Window {
   
   public static final Vector2 DEFAULT_SCREEN_SIZE = new Vector2(1920, 1080);
 
-  public final JFrame FRAME = new JFrame("Bananas");
+  public final JFrame FRAME = new JFrame("Minesweeper");
   public final JPanel PANEL = new JPanel() {public void paintComponent(Graphics gra) {Core.paintComponent(gra);}};
   
   private int screenSizeX, screenSizeY;

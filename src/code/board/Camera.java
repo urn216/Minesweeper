@@ -3,8 +3,8 @@ package code.board;
 import code.core.Core;
 import code.core.Window;
 
-import code.math.MathHelp;
-import code.math.Vector2;
+import mki.math.MathHelp;
+import mki.math.vector.Vector2;
 
 /**
 * A camera allows a player to see what's happening in the game.

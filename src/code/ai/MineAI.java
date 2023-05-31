@@ -3,7 +3,8 @@ package code.ai;
 import java.util.ArrayList;
 import java.util.List;
 
-import code.math.Vector2;
+import mki.math.vector.Vector2;
+
 import code.core.Scene;
 
 public class MineAI {

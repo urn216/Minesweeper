@@ -4,9 +4,9 @@ import code.ai.MineAI;
 // import java.text.SimpleDateFormat;
 // import java.util.Date;
 
-import ui.control.UIController;
+import mki.ui.control.UIController;
 // import ui.control.UIState;
-import ui.control.UIState;
+import mki.ui.control.UIState;
 import code.board.Camera;
 
 import java.awt.Graphics;

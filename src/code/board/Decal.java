@@ -2,7 +2,7 @@ package code.board;
 
 // import code.core.Scene;
 
-import code.math.Vector2;
+import mki.math.vector.Vector2;
 
 import java.awt.Graphics2D;
 //import java.awt.geom.Rectangle2D;

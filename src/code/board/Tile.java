@@ -1,7 +1,7 @@
 package code.board;
 
 // import code.math.MathHelp;
-import code.math.Vector2;
+import mki.math.vector.Vector2;
 
 // import java.util.*;
 import java.awt.Graphics2D;

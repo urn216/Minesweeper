@@ -1,6 +1,6 @@
 package code.core;
 
-import code.math.IOHelp;
+import mki.io.FileIO;
 
 import java.util.List;
 import java.util.SortedMap;
@@ -135,7 +135,7 @@ public class Settings {
    * Saves the current settings to the user's device storage
    */
   public void saveChanges() {
-    IOHelp.saveToFile(fileName, toString());
+    FileIO.saveToFile(fileName, toString());
     changed = false;
   }
 
@@ -143,7 +143,7 @@ public class Settings {
    * Reverts the settings to the last saved state, or to the default state if no saved state is found
    */
   public void revertChanges() {
-    if (!IOHelp.exists(fileName)) resetToDefault();
+    if (!FileIO.exists(fileName)) resetToDefault();
     else load();
   }
 
@@ -151,7 +151,7 @@ public class Settings {
    * Resets the settings to their default state, and saves this default to file
    */
   public void resetToDefault() {
-    IOHelp.saveToFile(fileName, defaults);
+    FileIO.saveToFile(fileName, defaults);
     load();
   }
 
@@ -161,7 +161,7 @@ public class Settings {
    * if a setting is missing wihtin the file as it is read in, the file will be deleted and replaced with the default settings
    */
   private void load() {
-    List<String> lines = IOHelp.readAllLines(fileName, false);
+    List<String> lines = FileIO.readAllLines(fileName, false);
 
     settings.clear();
 

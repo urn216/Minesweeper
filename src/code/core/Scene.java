@@ -2,7 +2,7 @@ package code.core;
 
 // import code.math.IOHelp;
 // import code.math.MathHelp;
-import code.math.Vector2;
+import mki.math.vector.Vector2;
 
 import code.board.Camera;
 import code.board.Decal;

@@ -12,11 +12,11 @@ import javax.swing.JFrame;
 
 import code.board.Camera;
 
-import code.math.Vector2;
-import code.math.Vector2I;
+import mki.math.vector.Vector2;
+import mki.math.vector.Vector2I;
 
-import ui.control.UIController;
-import ui.control.UIState;
+import mki.ui.control.UIController;
+import mki.ui.control.UIState;
 
 /**
  * Handles all user input within the game

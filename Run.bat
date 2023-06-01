@@ -1,4 +1,4 @@
-javac src/code/core/*.java src/code/math/*.java src/code/board/*.java src/code/ai/*.java -cp data/UI_1.0.4.jar -d bin
+javac src/code/core/*.java src/code/board/*.java src/code/ai/*.java -cp lib/*/*.jar -d bin
 
 cd bin
 

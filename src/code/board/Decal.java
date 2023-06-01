@@ -1,5 +1,7 @@
 package code.board;
 
+import mki.io.FileIO;
+
 // import code.core.Scene;
 
 import mki.math.vector.Vector2;
@@ -7,9 +9,6 @@ import mki.math.vector.Vector2;
 import java.awt.Graphics2D;
 //import java.awt.geom.Rectangle2D;
 //import java.awt.Color;
-
-import java.io.*;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 /**
@@ -33,9 +32,7 @@ public class Decal
   public Decal(double x, double y, String file, boolean pan)
   {
     position = new Vector2(x, y);
-    try {
-      img = ImageIO.read(Decal.class.getResourceAsStream("/data/textures/"+file));
-    }catch(IOException e){System.err.println("Missing Texture");}
+    img = FileIO.readImage(file);
     camPan = pan;
     width = img.getWidth();
     height = img.getHeight();
